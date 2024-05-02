@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Cat" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.Cat.SplashScreen" parent="Theme.SplashScreen">
+
+        <!-- Use windowSplashScreenAnimatedIcon to add a drawable or an animated drawable.
+             One of these is required. -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/cat_logo_animated_rotation</item>
+
+        <!-- Required for animated icons. -->
+        <item name="windowSplashScreenAnimationDuration">2000</item>
+
+        <!-- Set the theme of the Activity that directly follows your splash
+ screen. This is required. -->
+        <item name="postSplashScreenTheme">@style/Theme.Cat</item>
+
+    </style>
+
+</resources>
