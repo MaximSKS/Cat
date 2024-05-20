@@ -77,11 +77,15 @@ val LocalCatShapes = staticCompositionLocalOf { CatShapes }
 
 
 val LightDefaultColorScheme = lightColorScheme(
-    background = primaryWhite
+    background = primaryWhite,
+    primary = primaryOrange,
+    onPrimary = orange65
 )
 
-val DarkDefaultColorScheme = lightColorScheme(
-    background = systemBlack75
+val DarkDefaultColorScheme = darkColorScheme(
+    background = primaryGray,
+    primary = primaryOrange,
+    onPrimary = orange65
 )
 
 @Composable

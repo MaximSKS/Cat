@@ -67,6 +67,25 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.core.splashscreen)
+    implementation (libs.androidx.datastore.preferences)
+
+
+
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+
+    //Coroutines
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.kotlinx.coroutines.android)
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.okhttp)
+    implementation(libs.converter.gson)
+
+    //Coil
+    implementation(libs.coil)
+    implementation (libs.coil.compose)
 
 
 }

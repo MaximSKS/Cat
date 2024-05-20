@@ -87,7 +87,7 @@ data class CatTypography(
         fontWeight = FontWeight.Medium,
         fontSize = 20.sp,
         lineHeight = 28.sp,
-        letterSpacing = 0.sp
+        letterSpacing = 0.25.sp
     ),
     /** Subtitle 3*/
     val subtitle3: TextStyle = TextStyle(

@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Cat</string>
+
+    <!-- Bottom navigation bar -->
+    <string name="nav_home">Home</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_favorites">Favorites</string>
+
+    <!-- Search bar -->
+    <string name="search_breed">Search breed</string>
+
+    <!-- Wikipedia -->
+    <string name="learn_more">Learn more on\u0020</string>
+    <string name="wikipedia">Wikipedia</string>
+
+    <!-- Light/Dark theme -->
+    <string name="light_theme">Light theme</string>
+    <string name="dark_theme">Dark theme</string>
+
+
+
+
 </resources>

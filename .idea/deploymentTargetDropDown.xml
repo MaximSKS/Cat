@@ -2,10 +2,19 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="MainActivity">
+      <entry key="CatCardFavoritesPreview">
         <State />
       </entry>
-      <entry key="PawPreview">
+      <entry key="CatCardMainPreview">
+        <State />
+      </entry>
+      <entry key="CatMainScreenPreview (1)">
+        <State />
+      </entry>
+      <entry key="CatSettingsScreenPreview">
+        <State />
+      </entry>
+      <entry key="MainActivity">
         <State />
       </entry>
       <entry key="app">
