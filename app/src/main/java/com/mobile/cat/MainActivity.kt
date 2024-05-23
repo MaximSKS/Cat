@@ -14,9 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import com.mobile.cat.data.local.ThemePreferencesDataStore
-import com.mobile.cat.ui.screens.main.CatMainScreenTest
+import com.mobile.cat.presentation.screens.home.CatLaunchScreen
 import com.mobile.cat.ui.theme.CatTheme
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -38,7 +37,7 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.fillMaxSize(),
                             color = MaterialTheme.colorScheme.background
                         ) {
-                            CatMainScreenTest(
+                            CatLaunchScreen(
                                 onThemeChange = { newTheme ->
                                     lifecycleScope.launch {
                                         ThemePreferencesDataStore.setDarkTheme(

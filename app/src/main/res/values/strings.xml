@@ -17,6 +17,25 @@
     <string name="light_theme">Light theme</string>
     <string name="dark_theme">Dark theme</string>
 
+    <!-- Details screen -->
+    <string name="details_top_bar">Details</string>
+    <string name="details_breed">Breed:\u0020</string>
+    <string name="details_weight">Weight:\u0020</string>
+    <string name="details_life_span">Life\u0020span:\u0020</string>
+    <string name="details_origin">Origin:\u0020</string>
+    <string name="details_adaptability">Adaptability:\u0020</string>
+    <string name="details_temperament">Temperament:\u0020</string>
+    <string name="details_child_friendly">Child friendly:\u0020</string>
+    <string name="details_dog_friendly">Dog friendly:\u0020</string>
+    <string name="details_stranger_friendly">Stranger friendly:\u0020</string>
+    <string name="details_shedding_level">Shedding level:\u0020</string>
+    <string name="details_affection_level">Affection level:\u0020</string>
+    <string name="details_social_needs">Social needs:\u0020</string>
+    <string name="details_energy_level">Energy level:\u0020</string>
+    <string name="details_intelligence">Intelligence:\u0020</string>
+    <string name="details_description">Description:\u0020</string>
+    <string name="details_hypoallergenic">Hypoallergenic:\u0020</string>
+
 
 
 

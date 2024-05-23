@@ -19,12 +19,9 @@ import com.mobile.cat.ui.theme.primaryOrange
 fun CatTopAppBar(
     title: String,
     titleColor: Color = Color.Unspecified,
-    //onIconClick:  () -> Unit
     navHostController: NavHostController,
     navigationRoute: String,
 ){
-
-    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
 
     TopAppBar(
         title = {
@@ -45,7 +42,7 @@ fun CatTopAppBar(
         },
 
         colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.background),
-        scrollBehavior = scrollBehavior
+
     )
 
 }

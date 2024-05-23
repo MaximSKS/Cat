@@ -1,4 +1,4 @@
-package com.mobile.cat.ui.screens
+package com.mobile.cat.presentation.screens
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -17,6 +17,7 @@ import androidx.navigation.NavHostController
 import com.mobile.cat.navigation.CatRoutes
 import com.mobile.cat.ui.components.appbars.CatTopAppBar
 import com.mobile.cat.ui.theme.LocalCatTypography
+import com.mobile.cat.ui.theme.SIZE_12_DP
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,7 +45,7 @@ fun WikipediaScreen(navHostController: NavHostController) {
                 Text(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(top = 12.dp)
+                        .padding(top = SIZE_12_DP)
                         .wrapContentHeight(),
                     text = "Wikipedia screen test",
                     textAlign = TextAlign.Center,

@@ -18,7 +18,7 @@ object ThemePreferencesDataStore {
     fun isDarkTheme(context: Context): Flow<Boolean> {
         return context.dataStore.data
             .catch { exception ->
-                // If there's an error, emit the default value (false)
+                // If an error, emit the default value (false)
                 if (exception is IOException) {
                     emit(emptyPreferences())
                 } else {
@@ -26,7 +26,7 @@ object ThemePreferencesDataStore {
                 }
             }
             .map { preferences ->
-                preferences[THEME_KEY] ?: false // default is light theme
+                preferences[THEME_KEY] ?: false  // default is light theme
             }
     }
 

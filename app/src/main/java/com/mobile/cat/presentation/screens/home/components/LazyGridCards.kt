@@ -1,13 +1,9 @@
-package com.mobile.cat.ui.screens.main.components
+package com.mobile.cat.presentation.screens.home.components
 
 import android.annotation.SuppressLint
-import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -35,24 +31,28 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import coil.compose.rememberImagePainter
 import com.mobile.cat.data.remote.CatImageResponse
-import com.mobile.cat.navigation.CatRoutes
+import com.mobile.cat.presentation.CatMainViewModel
 import com.mobile.cat.ui.CatIcons
 import com.mobile.cat.ui.components.cards.CatCardMain
+import com.mobile.cat.ui.theme.SIZE_10_DP
+import com.mobile.cat.ui.theme.SIZE_180_DP
+import com.mobile.cat.ui.theme.SIZE_1_DP
+import com.mobile.cat.ui.theme.SIZE_20_DP
+import com.mobile.cat.ui.theme.SIZE_4_DP
+import com.mobile.cat.ui.theme.SIZE_8_DP
 import com.mobile.cat.ui.theme.primaryOrange
 import com.mobile.cat.ui.theme.secondaryOrange
 import com.mobile.cat.ui.theme.systemRed
-import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun  LazyGridCards(
     navHostController: NavHostController,
-    catImages: List<CatImageResponse>
+    catImages: List<CatImageResponse>,
+    viewModel: CatMainViewModel,
     ) {
 
     val context = LocalContext.current
@@ -74,42 +74,43 @@ fun  LazyGridCards(
     ) {
 
     LazyVerticalGrid(
-        modifier = Modifier.padding( 10.dp),
+        modifier = Modifier.padding(SIZE_10_DP),
         columns = GridCells.Fixed(2),
         content = {
             items(catImages.size) { index ->
                 val catImage = catImages[index]
-                //val breedName = catImage.breeds.firstOrNull()?.name ?: "Unknown"
-                val breedName = if(!catImage.breeds.isNullOrEmpty()){
-                    catImage.breeds.firstOrNull()?.name ?: "Unknown"
-                }else {"Unknown"}
+                val breed = catImage.breeds.firstOrNull()
+                val breedName = breed?.name ?: "Unknown"
 
                 CatCardMain(
                     modifier = Modifier
-                        .padding(10.dp)
+                        .padding(SIZE_10_DP)
                         .clickable {
-                            navHostController.navigate(CatRoutes.DETAILS)
+
+                            val route = viewModel.getCatDetailsRoute(catImage)
+                            navHostController.navigate(route)
+
                         },
 
                     title = {
                         Text(
-                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 20.dp),
+                            modifier = Modifier.padding(horizontal = SIZE_8_DP, vertical = SIZE_20_DP),
                             text = breedName,
                             textAlign = TextAlign.Center
 
                         )
                     },
                     border = BorderStroke(
-                        width = 1.dp,
+                        width = SIZE_1_DP,
                         color = secondaryOrange
                     ),
-                    elevation = CardDefaults.cardElevation(4.dp),
+                    elevation = CardDefaults.cardElevation(SIZE_4_DP),
 
                     cardImage = {
                         Image(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(180.dp),
+                                .height(SIZE_180_DP),
                             alignment = Alignment.Center,
                             contentScale = ContentScale.Crop,
                             painter = rememberAsyncImagePainter(model = catImage.url),

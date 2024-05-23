@@ -1,4 +1,4 @@
-package com.mobile.cat.ui.screens.main
+package com.mobile.cat.presentation.screens.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -11,7 +11,7 @@ import com.mobile.cat.ui.components.appbars.CatBottomNavigationBar
 
 
 @Composable
-fun CatMainScreenTest(onThemeChange: (Boolean) -> Unit) {
+fun CatLaunchScreen(onThemeChange: (Boolean) -> Unit) {
 
     val navController = rememberNavController()
 

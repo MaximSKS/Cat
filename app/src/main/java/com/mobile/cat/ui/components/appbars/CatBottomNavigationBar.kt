@@ -27,8 +27,8 @@ import com.mobile.cat.ui.theme.primaryOrange
 @Composable
 fun CatBottomNavigationBar(
     navController: NavController,
+    ) {
 
-) {
     val navItems = listOf(
         CatBottomNavigationItem.Home,
         CatBottomNavigationItem.Favorites,
@@ -37,53 +37,53 @@ fun CatBottomNavigationBar(
 
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
-    val bottomBarRoute = navItems.any { it.route == currentRoute }  //currentRoute == routeWithoutBottomBar //CatRoutes.DETAILS
+    val bottomBarRoute = navItems.any { it.route == currentRoute }
 
     if (bottomBarRoute) {
 
-    NavigationBar(
-        modifier = Modifier.height(65.dp),
-        //containerColor = MaterialTheme.colorScheme.background,
+        NavigationBar(
+            modifier = Modifier.height(65.dp),
+            containerColor = MaterialTheme.colorScheme.background,
 
-    ) {
+        ) {
 
-        navItems.forEach { item ->
-            NavigationBarItem(
-                selected = currentRoute == item.route,
-                onClick = {
-                    navController.navigate(item.route) {
-                        popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true
+            navItems.forEach { item ->
+                NavigationBarItem(
+                    selected = currentRoute == item.route,
+                    onClick = {
+                        navController.navigate(item.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
                         }
-                        launchSingleTop = true
-                    }
-                },
-                icon = {
+                    },
+                    icon = {
 
-                    Icon(
-                        painter =
-                        if (currentRoute == item.route) {
-                            painterResource(id = item.selectedIcon)
-                        } else painterResource(id = item.unselectedIcon),
-                        contentDescription = "Bottom bar icon",
-                        tint = primaryOrange
+                        Icon(
+                            painter =
+                            if (currentRoute == item.route) {
+                                painterResource(id = item.selectedIcon)
+                            } else painterResource(id = item.unselectedIcon),
+                            contentDescription = "Bottom bar icon",
+                            tint = primaryOrange
 
-                    )
+                        )
 
-                },
-                label = {
-                    Text(
-                        text = stringResource(id = item.title),
-                        color = primaryOrange
-                    )
-                },
+                    },
+                    label = {
+                        Text(
+                            text = stringResource(id = item.title),
+                            color = primaryOrange
+                        )
+                    },
 
-                colors = NavigationBarItemDefaults.colors(primaryOrange)
-            )
+                    colors = NavigationBarItemDefaults.colors(primaryOrange)
+                )
+
+            }
 
         }
-
     }
-}
 
 }

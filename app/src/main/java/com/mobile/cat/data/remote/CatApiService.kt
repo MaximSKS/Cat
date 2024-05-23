@@ -1,6 +1,5 @@
 package com.mobile.cat.data.remote
 
-import com.mobile.cat.data.remote.CatRetrofitInstance.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -15,5 +14,11 @@ interface CatApiService {
         @Header("x-api-key") apiKey: String = API_KEY
 
     ): Response<List<CatImageResponse>>
+
+
+    @GET("breeds")
+    suspend fun getBreeds(
+        @Header("x-api-key") apiKey: String = API_KEY
+    ): Response<List<CatBreed>>
 
 }

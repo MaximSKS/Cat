@@ -1,4 +1,4 @@
-package com.mobile.cat.ui.screens.settings
+package com.mobile.cat.presentation.screens.settings
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
@@ -18,12 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.mobile.cat.R
 import com.mobile.cat.ui.CatIcons
 import com.mobile.cat.ui.components.cards.CatCardSecondary
 import com.mobile.cat.ui.theme.LocalCatTypography
-import com.mobile.cat.ui.theme.primaryGray
+import com.mobile.cat.ui.theme.SIZE_10_DP
+import com.mobile.cat.ui.theme.SIZE_16_DP
+import com.mobile.cat.ui.theme.SIZE_1_DP
+import com.mobile.cat.ui.theme.SIZE_4_DP
 import com.mobile.cat.ui.theme.primaryOrange
 import com.mobile.cat.ui.theme.secondaryOrange
 
@@ -44,7 +46,7 @@ fun CatSettingsScreen(onThemeChange: (Boolean) -> Unit) {
         themeNameList.forEach { themeName ->
             CatCardSecondary(
                 modifier = Modifier
-                    .padding(start = 16.dp, top = 16.dp, end = 16.dp)
+                    .padding(start = SIZE_16_DP, top = SIZE_16_DP, end = SIZE_16_DP)
                     .clickable {
                         val newTheme = themeName == darkThemeName
                         isDarkTheme = newTheme
@@ -52,13 +54,13 @@ fun CatSettingsScreen(onThemeChange: (Boolean) -> Unit) {
                     },
 
                 border = BorderStroke(
-                    width = 1.dp,
+                    width = SIZE_1_DP,
                     color = secondaryOrange
                 ),
-                elevation = CardDefaults.cardElevation(4.dp),
+                elevation = CardDefaults.cardElevation(SIZE_4_DP),
                 title = {
                     Text(
-                        modifier = Modifier.padding(start = 16.dp),
+                        modifier = Modifier.padding(start = SIZE_16_DP),
                         text = themeName,
                         style = LocalCatTypography.current.body1,
 
@@ -68,13 +70,13 @@ fun CatSettingsScreen(onThemeChange: (Boolean) -> Unit) {
                 cardIcon = {
 
                     IconButton(
-                        modifier = Modifier.padding(end = 10.dp),
+                        modifier = Modifier.padding(end = SIZE_10_DP),
                         onClick = { onThemeChange(themeName == darkThemeName) }) {
                         Icon(
                             painter = if (themeName == lightThemeName) {
                                 painterResource(id = CatIcons.LightMode)
                             } else painterResource(id = CatIcons.DarkMode),
-                            tint =  if (isDarkTheme) primaryOrange else primaryGray,
+                            tint = primaryOrange /*if (isDarkTheme) primaryOrange else primaryGray*/,
                             contentDescription = "Theme icon",
                         )
                     }

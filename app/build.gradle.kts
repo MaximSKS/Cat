@@ -1,7 +1,13 @@
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+//    id("com.google.devtools.ksp")
+//    id("androidx.room")
+    alias(libs.plugins.googleDevtoolsKsp)
+    alias(libs.plugins.androidxRoom)
 }
+
 
 android {
     namespace = "com.mobile.cat"
@@ -47,6 +53,10 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
 }
 
 dependencies {
@@ -69,8 +79,6 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation (libs.androidx.datastore.preferences)
 
-
-
     // Navigation
     implementation(libs.androidx.navigation.compose)
 
@@ -87,5 +95,25 @@ dependencies {
     implementation(libs.coil)
     implementation (libs.coil.compose)
 
+    //Room
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    // To use Kotlin Symbol Processing (KSP)
+    ksp(libs.androidx.room.compiler)
 
+//    val room_version = "2.5.0"
+//
+//    implementation("androidx.room:room-runtime:$room_version")
+//    annotationProcessor("androidx.room:room-compiler:$room_version")
+//
+//    // To use Kotlin Symbol Processing (KSP)
+//    ksp("androidx.room:room-compiler:$room_version")
+
+
+}
+
+
+ksp {
+    arg("room.schemaLocation", projectDir.resolve("schemas").absolutePath.replace("\\", "/"))
 }

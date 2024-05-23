@@ -39,7 +39,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mobile.cat.ui.CatIcons
+import com.mobile.cat.ui.theme.CatShapes
 import com.mobile.cat.ui.theme.CatTheme
+import com.mobile.cat.ui.theme.SIZE_10_DP
+import com.mobile.cat.ui.theme.SIZE_1_DP
+import com.mobile.cat.ui.theme.SIZE_20_DP
+import com.mobile.cat.ui.theme.SIZE_4_DP
+import com.mobile.cat.ui.theme.SIZE_8_DP
 import com.mobile.cat.ui.theme.primaryOrange
 import com.mobile.cat.ui.theme.secondaryOrange
 import com.mobile.cat.ui.theme.systemRed
@@ -48,7 +54,7 @@ import com.mobile.cat.ui.theme.systemRed
 fun CatCardMain(
     modifier: Modifier = Modifier,
     title: @Composable () -> Unit,    // Cat breed name from Api
-    shape: Shape = RoundedCornerShape(8.dp),
+    shape: Shape = CatShapes.small,
     colors: CardColors = CardDefaults.cardColors(),
     elevation: CardElevation = CardDefaults.cardElevation(),
     border: BorderStroke? = null,
@@ -102,13 +108,13 @@ fun  CatCardMainLazyGridPreview() {
     CatTheme {
 
         LazyVerticalGrid(
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier.padding(SIZE_10_DP),
             columns = GridCells.Fixed(2),
             content = {
                 items(catList.size) { item ->
                     CatCardMain(
                         modifier = Modifier
-                            .padding(10.dp)
+                            .padding(SIZE_10_DP)
                             .clickable {
                                 Toast
                                     .makeText(
@@ -122,22 +128,22 @@ fun  CatCardMainLazyGridPreview() {
 
                         title = {
                             Text(
-                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 20.dp),
+                                modifier = Modifier.padding(horizontal = SIZE_8_DP, vertical = SIZE_20_DP),
                                 text = catList[item]
 
                             )
                         },
                         border = BorderStroke(
-                            width = 1.dp,
+                            width = SIZE_1_DP,
                             color = secondaryOrange
                         ),
-                        elevation = CardDefaults.cardElevation(4.dp),
+                        elevation = CardDefaults.cardElevation(SIZE_4_DP),
 
                         cardImage = {
                             Image(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(8.dp),
+                                    .padding(SIZE_8_DP),
                                 alignment = Alignment.Center,
                                 contentScale = ContentScale.Crop,
                                 painter = painterResource(id = CatIcons.CatLogo),
