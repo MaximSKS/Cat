@@ -46,6 +46,7 @@ import com.mobile.cat.ui.theme.SIZE_8_DP
 import com.mobile.cat.ui.theme.primaryOrange
 import com.mobile.cat.ui.theme.secondaryOrange
 import com.mobile.cat.ui.theme.systemRed
+import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -132,11 +133,12 @@ fun  LazyGridCards(
 
                         IconButton(
                             onClick = {
-//                                clickedIndex = index
-//
-//                                coroutineScope.launch {
-//                                    snackbarHostState.showSnackbar("${catList[item]} added to favorites")
-//                                }
+                                viewModel.addToFavorites(catImage)
+                                clickedIndex = index
+
+                                coroutineScope.launch {
+                                    snackbarHostState.showSnackbar("$breedName added to favorites")
+                                }
                             }
                         ) {
                             Icon(

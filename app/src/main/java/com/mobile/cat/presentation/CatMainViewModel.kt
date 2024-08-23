@@ -1,8 +1,13 @@
 package com.mobile.cat.presentation
 
+import android.app.Application
 import android.net.Uri
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.room.Room
+import com.mobile.cat.data.local.CatDatabase
+import com.mobile.cat.data.local.FavoriteCat
 import com.mobile.cat.data.remote.CatBreed
 import com.mobile.cat.data.remote.CatImageResponse
 import com.mobile.cat.data.remote.CatRetrofitInstance
@@ -11,21 +16,63 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class CatMainViewModel : ViewModel() {
+class CatMainViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val database: CatDatabase = Room.databaseBuilder(
+        application,
+        CatDatabase::class.java,
+        "cat_database"
+    ).build()
+
+    private val favoriteCatDao = database.favoriteCatDao()
 
     private val _catImagesMutableState = MutableStateFlow<List<CatImageResponse>>(emptyList())
-    //val catImagesState = _catImagesMutableState
 
     private val _breedsMutableState = MutableStateFlow<List<CatBreed>>(emptyList())
     val breedsState: StateFlow<List<CatBreed>> = _breedsMutableState
 
     private val _filteredCatImagesState = MutableStateFlow<List<CatImageResponse>>(emptyList())
     val filteredCatImagesState: StateFlow<List<CatImageResponse>> = _filteredCatImagesState
-
+    private val _favoritesMutableState = MutableStateFlow<List<FavoriteCat>>(emptyList())
+    val favoritesState: StateFlow<List<FavoriteCat>> = _favoritesMutableState
 
     init {
         fetchCatImages()
         fetchBreeds()
+        fetchFavorites()
+    }
+
+    private fun fetchFavorites() {
+        viewModelScope.launch {
+            _favoritesMutableState.value = favoriteCatDao.getAllFavorites()
+        }
+    }
+
+    fun addToFavorites(catImage: CatImageResponse) {
+        val breed = catImage.breeds.firstOrNull() ?: return
+        val favoriteCat = FavoriteCat(
+            id = catImage.id,
+            name = breed.name,
+            imageUrl = catImage.url,
+            breed = breed.name,
+            weight = breed.weight.metric,
+            lifeSpan = breed.lifeSpan,
+            origin = breed.origin,
+            temperament = breed.temperament,
+            description = breed.description,
+            wikipediaUrl = breed.wikipediaUrl
+        )
+        viewModelScope.launch {
+            favoriteCatDao.insert(favoriteCat)
+            fetchFavorites()
+        }
+    }
+
+    fun removeFromFavorites(cat: FavoriteCat) {
+        viewModelScope.launch {
+            favoriteCatDao.delete(cat)
+            fetchFavorites()
+        }
     }
 
     //getting cat image and breed name for card

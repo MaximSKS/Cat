@@ -1,6 +1,7 @@
 package com.mobile.cat.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -27,7 +28,7 @@ fun CatNavGraph(
         }
 
         composable(CatRoutes.FAVORITES) {
-            CatFavoritesScreen()
+            CatFavoritesScreen(viewModel = viewModel())
         }
 
         composable(CatRoutes.SETTINGS) {

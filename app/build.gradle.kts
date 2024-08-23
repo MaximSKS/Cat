@@ -113,7 +113,13 @@ dependencies {
 
 }
 
+//ksp {
+//    // Escape spaces with double backslashes
+//    val schemaPath = projectDir.absolutePath.replace(" ", "\\\\ ")
+//    arg("room.schemaLocation", "$schemaPath/schemas")
+//}
 
-ksp {
-    arg("room.schemaLocation", projectDir.resolve("schemas").absolutePath.replace("\\", "/"))
-}
+
+//ksp {
+//    arg("room.schemaLocation", projectDir.resolve("schemas").absolutePath.replace("\\", "/"))
+//}

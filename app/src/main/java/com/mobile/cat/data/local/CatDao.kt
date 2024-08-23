@@ -3,19 +3,17 @@ package com.mobile.cat.data.local
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-interface CatDao {
-
-    @Query("SELECT * FROM CatEntity")
-    fun getAllCats(): List<CatEntity>
-
-    @Insert
-    fun insertCat(cat: CatEntity)
+interface FavoriteCatDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(cat: FavoriteCat)
 
     @Delete
-    fun deleteCat(cat: CatEntity)
+    suspend fun delete(cat: FavoriteCat)
 
-
+    @Query("SELECT * FROM favorite_cats")
+    suspend fun getAllFavorites(): List<FavoriteCat>
 }
